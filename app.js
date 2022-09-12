@@ -69,16 +69,6 @@ app.get("/",function (req,res) {
     })
 });
 
-/* app.get("books/:bookid",function (req,res) {
-    const requestedbookId = req.params.bookid;
-    Book.findOne({
-        _id:requestedbookId,
-    },function (err,book) {
-        
-    })
-    
-})
- */
 // update
 app.get("/update/:bookid",function (req,res) {
     const requestedbookId = req.params.bookid;
