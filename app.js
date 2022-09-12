@@ -39,12 +39,16 @@ const Book = mongoose.model("Book",bookSchema);
 /* CRUD */
 
 // create
-app.get("/create",function (req,res) {
+app.get("/create",function(req,res){
+    res.render("create");
+});
+
+app.post("/create",function (req,res) {
     const book = new Book({
     title:req.body.bookTitle,
     subject:req.body.bookSubject,
-    assecssion:req.body.bookassecssion,
-    shelf:req.body.bookshelf,
+    assecssion:req.body.bookAssecssion,
+    shelf:req.body.bookShelf,
     });
 
     book.save(function (err) {
@@ -61,10 +65,20 @@ app.get("/",function (req,res) {
         res.render("home",{
             books:books,
         });
-        console.log(posts);
+        console.log(books);
     })
 });
 
+/* app.get("books/:bookid",function (req,res) {
+    const requestedbookId = req.params.bookid;
+    Book.findOne({
+        _id:requestedbookId,
+    },function (err,book) {
+        
+    })
+    
+})
+ */
 // update
 app.post("/update/:assecssion",function(req,res){
     const assecssion=req.params.assecssion;
