@@ -128,18 +128,19 @@ app.post("/update/:bookid",function(req,res){
 });
 
 // delete
-app.get("/delete/:assecssion",function (req,res) {
-   const assecssion=req.params.assecssion;
-   const deleteDocument = async (assecssion) =>{
+app.get("/delete/:bookid",function (req,res) {
+   const bookid=req.params.bookid;
+   const deleteDocument = async (bookid) =>{
     try {
-        const result = await Book.findOneAndDelete({
-            assecssion:assecssion,
-        })
+        const result = await Book.findByIdAndDelete({
+            _id:bookid,
+        });
+        res.redirect("/");
     } catch (error) {
         console.log(error);
     }
    }
-   deleteDocument(assecssion);
+   deleteDocument(bookid);
 });
 
 /* Server init */
