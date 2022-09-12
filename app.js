@@ -80,20 +80,37 @@ app.get("/",function (req,res) {
 })
  */
 // update
-app.post("/update/:assecssion",function(req,res){
-    const assecssion=req.params.assecssion;
-    const updateDocument = async (assecssion) =>{
+app.get("/update/:bookid",function (req,res) {
+    const requestedbookId = req.params.bookid;
+    Book.findOne({
+        _id: requestedbookId
+    },
+    function (err,book) {
+        res.render("update",
+    {
+        bookid:book._id,
+        title: book.title,
+        subject: book.subject,
+        assecssion: book.assecssion,
+        shelf: book.shelf,
+    });
+    });
+    
+});
+app.post("/update/:bookid",function(req,res){
+    const bookid=req.params.bookid;
+    const updateDocument = async (bookid) =>{
         try {
             const updateDocument = await Book.findOneAndUpdate(
                 {
-                    assecssion:assecssion
+                    _id:bookid
                 },
                 {
                     $set:{
                         title:req.body.bookTitle,
                         subject:req.body.bookSubject,
-                        assecssion:req.body.bookassecssion,
-                        shelf:req.body.bookshelf,
+                        assecssion:req.body.bookAssecssion,
+                        shelf:req.body.bookShelf,
                     },
                 },
                 {
@@ -101,12 +118,13 @@ app.post("/update/:assecssion",function(req,res){
                     userFindAndModify:false,
                 }
             );
+            res.redirect("/");
             console.log("update successfull");
         } catch (error) {
             console.log(error);
         }
     };
-    updateDocument(assecssion);
+    updateDocument(bookid);
 });
 
 // delete

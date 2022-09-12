@@ -1,0 +1,18 @@
+<%- include("partials/header"); -%>
+<h1>Create</h1>
+<form class="" action="/update/<%=bookid%>" method="post">
+    <div class="form-group">
+        <label>Title</label>
+        <input class="form-control" type="text" name="bookTitle"  value="<%=title%>">
+        <label>Subject</label>
+        <input class="form-control" type="text" name="bookSubject" value="<%=subject%>">
+        <label>Asscesion</label>
+        <input class="form-control" type="text" name="bookAssecssion" value="<%=assecssion%>">
+        <label>Shelf</label>
+        <input class="form-control" type="text" name="bookShelf" value="<%=shelf%>">
+      </div>
+      <button class="btn btn-primary" type="submit" name="button">Create</button>
+</form>
+
+
+<%- include("partials/footer"); -%>

@@ -5,16 +5,19 @@
         <h1><a href="/books/<%=book._id%>">Title =
                 <%=book.title%>
             </a></h1>
-        <p>Subject = 
+        <p>Subject =
             <%=book.subject %>
         </p>
-        <p>Assecssion = 
+        <p>Assecssion =
             <%=book.assecssion %>
         </p>
-        <p>Shelf = 
+        <p>Shelf =
             <%=book.shelf %>
         </p>
-        <p><a href="/update/:bookid"></a></p>
+
+        <p><a href="/update/<%=book._id%>">Update</a>
+            <a href="/delete/<%=book._id%>">Delete</a>
+        </p>
         <% }) %>
             <br>
             <%- include("partials/footer"); -%>
